@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengaruh Anak Muda terhadap Lingkungan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.leaf{
+    position:absolute;
+    width:35px;
+    height:35px;
+    background:rgba(0,255,170,0.3);
+    border-radius:50% 0 50% 0;
+    animation:float 12s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh) rotate(0deg); opacity:0;}
+    10%{opacity:1;}
+    100%{transform:translateY(-10vh) rotate(360deg); opacity:0;}
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:70px 20px 40px;
+}
+
+/* SECTION STYLE */
+.section{
+    margin:30px auto;
+    width:90%;
+    max-width:950px;
+    padding:30px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    opacity:0;
+    transform:translateY(50px);
+    transition:all 0.8s ease;
+}
+
+.section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.section h2{
+    color:#00ffd5;
+    margin-bottom:15px;
+}
+
+ul{
+    line-height:1.8;
+}
+
+canvas{
+    background:white;
+    border-radius:15px;
+    padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="leaf" style="left:10%; animation-delay:0s;"></div>
+    <div class="leaf" style="left:30%; animation-delay:4s;"></div>
+    <div class="leaf" style="left:55%; animation-delay:7s;"></div>
+    <div class="leaf" style="left:75%; animation-delay:2s;"></div>
+    <div class="leaf" style="left:90%; animation-delay:6s;"></div>
+</div>
+
+<div class="hero">
+    <h1>🌍 Pengaruh Anak Muda terhadap Lingkungan</h1>
+    <p>Generasi muda sebagai agen perubahan untuk menjaga bumi tetap lestari.</p>
+</div>
+
+<div class="section">
+    <h2>👥 Peranan Remaja dalam Lingkungan</h2>
+    <ul>
+        <li>Sebagai agen perubahan dalam masyarakat</li>
+        <li>Mengkampanyekan gaya hidup ramah lingkungan</li>
+        <li>Ikut kegiatan bersih lingkungan</li>
+        <li>Mengembangkan inovasi kreatif berbasis lingkungan</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>🌱 Dampak Positif</h2>
+    <ul>
+        <li>Meningkatkan kesadaran masyarakat</li>
+        <li>Mengurangi penggunaan plastik</li>
+        <li>Mendorong energi terbarukan</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>⚠ Dampak Negatif</h2>
+    <ul>
+        <li>Gaya hidup konsumtif</li>
+        <li>Kurangnya kesadaran memilah sampah</li>
+        <li>Ketergantungan fast fashion</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>🌟 Remaja yang Patut Dicontoh</h2>
+    <ul>
+        <li><b>Greta Thunberg</b> – Aktivis perubahan iklim.</li>
+        <li><b>Melati Wijsen</b> – Gerakan Bye Bye Plastic Bags.</li>
+        <li><b>Komunitas Bank Sampah Pelajar</b></li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>📊 Grafik Data Sampah Plastik</h2>
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+// SCROLL ANIMATION
+const sections = document.querySelectorAll(".section");
+
+window.addEventListener("scroll", () => {
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight - 100;
+
+        if(sectionTop < triggerPoint){
+            section.classList.add("show");
+        }
+    });
+});
+
+// CHART
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
+        datasets: [{
+            label: 'Juta Ton Sampah Plastik',
+            data: [5.2, 5.6, 6.1, 6.5, 7.0, 7.4],
+            borderColor: 'green',
+            backgroundColor: 'rgba(0,128,0,0.2)',
+            tension: 0.4,
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
